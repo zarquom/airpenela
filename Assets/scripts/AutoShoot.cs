@@ -4,7 +4,7 @@ using System.Collections;
 public class AutoShoot : MonoBehaviour
 {
     public float INITIAL_SPAWN_HEIGHT;
-    public float STARTING_Y;
+    public float mTotalFlightTime;
 
     private Object mBallPrefab;
     private Vector3 mHoopPosition;
@@ -47,6 +47,7 @@ public class AutoShoot : MonoBehaviour
     private void ApplyInitialImpulse(GameObject newBallObject)
     {
         Vector3 impulseForce = CalculateInitialImpulse(newBallObject);
+
         Rigidbody rigidBody = newBallObject.GetComponent<Rigidbody>();
         rigidBody.AddForce(impulseForce, ForceMode.Impulse);
     }
@@ -57,11 +58,11 @@ public class AutoShoot : MonoBehaviour
 
         Vector3 ballPosition = newBallObject.transform.position;
 
-        Vector3 distance = mHoopPosition - ballPosition;
+        Vector3 distanceToHoop = mHoopPosition - ballPosition;
 
-        result.x = distance.x / 1.35f;
-        result.y = STARTING_Y;
-        result.z = distance.z / 1.35f;
+        result.x = distanceToHoop.x / mTotalFlightTime;
+        result.y = (distanceToHoop.y + distanceToHoop.y - 0.5f * Physics.gravity.y * Mathf.Pow(mTotalFlightTime, 2)) / mTotalFlightTime;
+        result.z = distanceToHoop.z / mTotalFlightTime;
 
         return result;
     }
