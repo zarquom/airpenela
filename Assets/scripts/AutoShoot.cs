@@ -10,14 +10,12 @@ public class AutoShoot : MonoBehaviour
     private Object mBallPrefab;
     private Vector3 mHoopPosition;
 
-    // Use this for initialization
     void Start()
     {
         mBallPrefab = Resources.Load("prefabs/Ball");
         mHoopPosition = GameObject.Find("Hoop").transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -30,14 +28,21 @@ public class AutoShoot : MonoBehaviour
             {
                 if (hit.transform != null)
                 {
-                    Vector3 ballSpawnPosition = new Vector3(hit.point.x, hit.point.y + INITIAL_SPAWN_HEIGHT, hit.point.z);
-
-                    GameObject newBallObject = Instantiate(mBallPrefab, ballSpawnPosition, Quaternion.identity) as GameObject;
-                    ApplyInitialImpulse(newBallObject);
+                    //ShootBall(hit.point);
                 }
             }
         }
 
+    }
+
+    public void ShootBall(Vector3 position, Material playerColorMaterial)
+    {
+        Vector3 ballSpawnPosition = new Vector3(position.x, position.y + INITIAL_SPAWN_HEIGHT, position.z);
+
+        GameObject newBallObject = Instantiate(mBallPrefab, ballSpawnPosition, Quaternion.identity) as GameObject;
+        newBallObject.GetComponent<ColorTinter>().SetPlayerColorMaterial(playerColorMaterial);
+
+        ApplyInitialImpulse(newBallObject);
     }
 
     private void ApplyInitialImpulse(GameObject newBallObject)
