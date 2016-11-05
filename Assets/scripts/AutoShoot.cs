@@ -5,7 +5,6 @@ public class AutoShoot : MonoBehaviour
 {
     public float INITIAL_SPAWN_HEIGHT;
     public float STARTING_Y;
-    public float STARTING_X;
 
     private Object mBallPrefab;
     private Vector3 mHoopPosition;
@@ -60,7 +59,7 @@ public class AutoShoot : MonoBehaviour
 
         Vector3 distance = mHoopPosition - ballPosition;
 
-        result.x = distance.x / 1.39f;
+        result.x = distance.x / 1.35f;
         result.y = STARTING_Y;
         result.z = distance.z / 1.35f;
 
