@@ -72,6 +72,7 @@
     <Compile Include="Assets\scripts\AutoShoot.cs" />
     <Compile Include="Assets\scripts\ColorTinter.cs" />
     <Compile Include="Assets\scripts\DeathZone.cs" />
+    <Compile Include="Assets\scripts\NetCloth.cs" />
     <Compile Include="Assets\scripts\PlayerController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />

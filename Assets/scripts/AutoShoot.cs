@@ -6,11 +6,14 @@ public class AutoShoot : MonoBehaviour
     public float INITIAL_SPAWN_HEIGHT;
     public float mTotalFlightTime;
 
+    private GameObject mNetClothObject;
+
     private Object mBallPrefab;
     private Vector3 mHoopPosition;
 
     void Start()
     {
+        mNetClothObject = GameObject.Find("NetCloth");
         mBallPrefab = Resources.Load("prefabs/Ball");
         mHoopPosition = GameObject.Find("Hoop").transform.position;
     }
@@ -42,6 +45,8 @@ public class AutoShoot : MonoBehaviour
         newBallObject.GetComponent<ColorTinter>().SetPlayerColorMaterial(playerColorMaterial);
 
         ApplyInitialImpulse(newBallObject);
+
+        mNetClothObject.GetComponent<NetCloth>().AddBallCollider(newBallObject);
     }
 
     private void ApplyInitialImpulse(GameObject newBallObject)

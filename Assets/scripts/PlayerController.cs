@@ -68,7 +68,6 @@ public class PlayerController : MonoBehaviour
     {
         if ((mIsJumping) && ((Input.GetKeyUp("joystick " + mPlayerNum + " button 0")) || (Input.GetKeyUp(KeyCode.Space))))
         {
-            Debug.Log("SHOT AT: " + transform.position.y);
             mAutoShootManager.GetComponent<AutoShoot>().ShootBall(transform.position, mBallColorMaterial);
         }
     }
