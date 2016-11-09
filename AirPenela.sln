@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirPenela.CSharp", "AirPenela.CSharp.csproj", "{26E4129C-A6AF-9372-3C77-4169BFACFDB0}"
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "airpenela.CSharp", "airpenela.CSharp.csproj", "{472C9DE5-E9FC-2B50-44BB-8E224BE3342E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "airpenela.CSharp.Editor", "airpenela.CSharp.Editor.csproj", "{86227562-3C6C-9B6A-D448-5216428BD270}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +11,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{26E4129C-A6AF-9372-3C77-4169BFACFDB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26E4129C-A6AF-9372-3C77-4169BFACFDB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26E4129C-A6AF-9372-3C77-4169BFACFDB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26E4129C-A6AF-9372-3C77-4169BFACFDB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{472C9DE5-E9FC-2B50-44BB-8E224BE3342E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{472C9DE5-E9FC-2B50-44BB-8E224BE3342E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{472C9DE5-E9FC-2B50-44BB-8E224BE3342E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{472C9DE5-E9FC-2B50-44BB-8E224BE3342E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86227562-3C6C-9B6A-D448-5216428BD270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86227562-3C6C-9B6A-D448-5216428BD270}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86227562-3C6C-9B6A-D448-5216428BD270}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86227562-3C6C-9B6A-D448-5216428BD270}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

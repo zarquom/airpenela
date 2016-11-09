@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Rewired;
 
 public class PlayerController : MonoBehaviour
 {
@@ -46,8 +47,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            float inputValueHorizontal = Input.GetAxis("P" + mPlayerNum + "_Horizontal");
-            float inputValueVertical = Input.GetAxis("P" + mPlayerNum + "_Vertical");
+            float inputValueHorizontal = ReInput.players.GetPlayer(mPlayerNum - 1).GetAxis("Move Horizontal");
+            float inputValueVertical = ReInput.players.GetPlayer(mPlayerNum - 1).GetAxis("Move Vertical");
 
             newPosition.x += inputValueHorizontal * VELOCITY * Time.deltaTime;
             newPosition.z += inputValueVertical * VELOCITY * Time.deltaTime;
