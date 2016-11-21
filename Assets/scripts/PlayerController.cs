@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 
     public int mPlayerNum;
     public Material mBallColorMaterial;
+    public GameObject hoop;
+    public Animator anim;
 
     public float VELOCITY;
     public float GRAVITY;
@@ -17,11 +19,13 @@ public class PlayerController : MonoBehaviour
     private float mVerticalAcceleration = 0.0f;
 
     private GameObject mAutoShootManager;
+    private Joystick m_joystick;
 
     void Start()
     {
         mInitialY = transform.position.y;
         mAutoShootManager = GameObject.Find("AutoShootManager");
+        m_joystick = (ReInput.players.GetPlayer(mPlayerNum - 1).controllers.GetController(ControllerType.Joystick, mPlayerNum - 1) as Joystick);
     }
 
     void Update()
@@ -44,16 +48,22 @@ public class PlayerController : MonoBehaviour
                 newPosition.y = mInitialY;
                 mVerticalAcceleration = 0.0f;
             }
+            Vector3 bodyDirection = hoop.transform.position - this.transform.position;
+            transform.forward = new Vector3(bodyDirection.x, 0, bodyDirection.y);
         }
         else
         {
-            Joystick j = (ReInput.players.GetPlayer(mPlayerNum - 1).controllers.GetController(ControllerType.Joystick, 0) as Joystick);
-            if (j == null) return;
-            float inputValueHorizontal = j.GetAxisRawById(0);
-            float inputValueVertical = -j.GetAxisRawById(1);
+            if (m_joystick == null) return;
+            float inputValueHorizontal = m_joystick.GetAxisRawById(0);
+            float inputValueVertical = -m_joystick.GetAxisRawById(1);
 
             newPosition.x += inputValueHorizontal * VELOCITY * Time.deltaTime;
             newPosition.z += inputValueVertical * VELOCITY * Time.deltaTime;
+
+            if (inputValueHorizontal != 0 || inputValueVertical != 0)
+            {
+                transform.forward = new Vector3(inputValueHorizontal * VELOCITY * Time.deltaTime, 0, inputValueVertical * VELOCITY * Time.deltaTime);
+            }
         }
 
         transform.position = newPosition;
@@ -61,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckInputForJump()
     {
-        if ((!mIsJumping) && ((Input.GetKeyDown("joystick " + mPlayerNum + " button 0")) || (Input.GetKeyDown(KeyCode.Space))))
+        if ((!mIsJumping) && (m_joystick.GetAnyButtonDown() || (Input.GetKeyDown(KeyCode.Space))))
         {
             StartJump();
         }
@@ -69,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckForShot()
     {
-        if ((mIsJumping) && ((Input.GetKeyUp("joystick " + mPlayerNum + " button 0")) || (Input.GetKeyUp(KeyCode.Space))))
+        if ((mIsJumping) && (m_joystick.GetAnyButtonUp() || (Input.GetKeyUp(KeyCode.Space))))
         {
             mAutoShootManager.GetComponent<AutoShoot>().ShootBall(transform.position, mBallColorMaterial);
         }
@@ -79,6 +89,7 @@ public class PlayerController : MonoBehaviour
     {
         mIsJumping = true;
         mVerticalAcceleration = JUMP_INITIAL_VELOCITY;
+        anim.Play("jump");
     }
 
 }
