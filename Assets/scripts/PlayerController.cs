@@ -47,8 +47,10 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            float inputValueHorizontal = ReInput.players.GetPlayer(mPlayerNum - 1).GetAxis("Move Horizontal");
-            float inputValueVertical = ReInput.players.GetPlayer(mPlayerNum - 1).GetAxis("Move Vertical");
+            Joystick j = (ReInput.players.GetPlayer(mPlayerNum - 1).controllers.GetController(ControllerType.Joystick, 0) as Joystick);
+            if (j == null) return;
+            float inputValueHorizontal = j.GetAxisRawById(0);
+            float inputValueVertical = -j.GetAxisRawById(1);
 
             newPosition.x += inputValueHorizontal * VELOCITY * Time.deltaTime;
             newPosition.z += inputValueVertical * VELOCITY * Time.deltaTime;

@@ -480,137 +480,6 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
-  windowsUWP:
-    matchingCriteria:
-      axisCount: 2
-      buttonCount: 8
-      disabled: 0
-      hatCount: 0
-      manufacturer_useRegex: 0
-      productName_useRegex: 0
-      manufacturer: []
-      productName:
-      - 'ATRAK Device #1'
-      - 'ATRAK Device #2'
-      - 'ATRAK Device #3'
-      - 'ATRAK Device #4'
-      productGUID:
-      - 1601d209-0000-0000-0000-504944564944
-      - 1602d209-0000-0000-0000-504944564944
-      - 1603d209-0000-0000-0000-504944564944
-      - 1604d209-0000-0000-0000-504944564944
-    elements:
-      compoundElements: []
-      axes:
-      - elementIdentifier: 0
-        sourceType: 1
-        sourceAxis: 0
-        sourceAxisRange: 0
-        invert: 0
-        axisDeadZone: 0
-        calibrateAxis: 0
-        axisZero: 0
-        axisMin: 0
-        axisMax: 0
-        sourceButton: 0
-        buttonAxisContribution: 0
-        sourceHat: 0
-        sourceHatDirection: 0
-        sourceHatRange: 0
-      - elementIdentifier: 1
-        sourceType: 1
-        sourceAxis: 1
-        sourceAxisRange: 0
-        invert: 1
-        axisDeadZone: 0
-        calibrateAxis: 0
-        axisZero: 0
-        axisMin: 0
-        axisMax: 0
-        sourceButton: 0
-        buttonAxisContribution: 0
-        sourceHat: 0
-        sourceHatDirection: 0
-        sourceHatRange: 0
-      buttons:
-      - elementIdentifier: 2
-        sourceType: 0
-        sourceButton: 2
-        sourceAxis: 0
-        sourceAxisPole: 0
-        axisDeadZone: 0
-        sourceHat: 0
-        sourceHatType: 0
-        sourceHatDirection: 0
-        requireMultipleButtons: 0
-        requiredButtons: 
-        ignoreIfButtonsActive: 0
-        ignoreIfButtonsActiveButtons: 
-      - elementIdentifier: 3
-        sourceType: 0
-        sourceButton: 3
-        sourceAxis: 0
-        sourceAxisPole: 0
-        axisDeadZone: 0
-        sourceHat: 0
-        sourceHatType: 0
-        sourceHatDirection: 0
-        requireMultipleButtons: 0
-        requiredButtons: 
-        ignoreIfButtonsActive: 0
-        ignoreIfButtonsActiveButtons: 
-      - elementIdentifier: 4
-        sourceType: 0
-        sourceButton: 0
-        sourceAxis: 0
-        sourceAxisPole: 0
-        axisDeadZone: 0
-        sourceHat: 0
-        sourceHatType: 0
-        sourceHatDirection: 0
-        requireMultipleButtons: 0
-        requiredButtons: 
-        ignoreIfButtonsActive: 0
-        ignoreIfButtonsActiveButtons: 
-      - elementIdentifier: 5
-        sourceType: 0
-        sourceButton: 4
-        sourceAxis: 0
-        sourceAxisPole: 0
-        axisDeadZone: 0
-        sourceHat: 0
-        sourceHatType: 0
-        sourceHatDirection: 0
-        requireMultipleButtons: 0
-        requiredButtons: 
-        ignoreIfButtonsActive: 0
-        ignoreIfButtonsActiveButtons: 
-      - elementIdentifier: 6
-        sourceType: 0
-        sourceButton: 1
-        sourceAxis: 0
-        sourceAxisPole: 0
-        axisDeadZone: 0
-        sourceHat: 0
-        sourceHatType: 0
-        sourceHatDirection: 0
-        requireMultipleButtons: 0
-        requiredButtons: 
-        ignoreIfButtonsActive: 0
-        ignoreIfButtonsActiveButtons: 
-      - elementIdentifier: 7
-        sourceType: 0
-        sourceButton: 5
-        sourceAxis: 0
-        sourceAxisPole: 0
-        axisDeadZone: 0
-        sourceHat: 0
-        sourceHatType: 0
-        sourceHatDirection: 0
-        requireMultipleButtons: 0
-        requiredButtons: 
-        ignoreIfButtonsActive: 0
-        ignoreIfButtonsActiveButtons: 
   fallback_Windows:
     matchingCriteria:
       axisCount: 0
@@ -632,8 +501,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 0
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         invert: 0
         sourceAxisRange: 0
         buttonAxisContribution: 0
@@ -647,8 +514,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 0
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         invert: 1
         sourceAxisRange: 0
         buttonAxisContribution: 0
@@ -663,8 +528,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 3
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -684,8 +547,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 4
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -705,8 +566,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 1
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -726,8 +585,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 5
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -747,8 +604,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 2
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -768,8 +623,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 6
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -783,18 +636,6 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
-  fallback_WindowsUWP:
-    matchingCriteria:
-      axisCount: 0
-      buttonCount: 0
-      disabled: 0
-      alwaysMatch: 0
-      productName_useRegex: 0
-      productName: []
-    elements:
-      compoundElements: []
-      axes: []
-      buttons: []
   fallback_OSX:
     matchingCriteria:
       axisCount: 0
@@ -813,8 +654,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 0
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         invert: 0
         sourceAxisRange: 0
         buttonAxisContribution: 0
@@ -828,8 +667,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 0
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         invert: 1
         sourceAxisRange: 0
         buttonAxisContribution: 0
@@ -844,8 +681,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 3
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -865,8 +700,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 4
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -886,8 +719,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 1
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -907,8 +738,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 5
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -928,8 +757,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 2
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -949,8 +776,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 6
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -982,8 +807,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 0
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         invert: 0
         sourceAxisRange: 0
         buttonAxisContribution: 0
@@ -997,8 +820,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 0
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         invert: 1
         sourceAxisRange: 0
         buttonAxisContribution: 0
@@ -1013,8 +834,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 3
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -1034,8 +853,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 4
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -1055,8 +872,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 1
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -1076,8 +891,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 5
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -1097,8 +910,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 2
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -1118,8 +929,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 6
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -1163,8 +972,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 0
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         invert: 0
         sourceAxisRange: 0
         buttonAxisContribution: 0
@@ -1178,8 +985,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 0
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         invert: 1
         sourceAxisRange: 0
         buttonAxisContribution: 0
@@ -1194,8 +999,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 18
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -1215,8 +1018,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 19
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -1236,8 +1037,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 16
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -1257,8 +1056,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 20
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -1278,8 +1075,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 17
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -1299,8 +1094,6 @@ MonoBehaviour:
         axisDeadZone: 0
         sourceButton: 0
         sourceKeyCode: 0
-        customCalculation: {fileID: 0}
-        customCalculationSourceData: []
         sourceAxisPole: 0
         unityHat_sourceAxis1: 0
         unityHat_sourceAxis2: 0
@@ -1447,18 +1240,6 @@ MonoBehaviour:
       axes: []
       buttons: []
   fallback_AmazonFireTV:
-    matchingCriteria:
-      axisCount: 0
-      buttonCount: 0
-      disabled: 0
-      alwaysMatch: 0
-      productName_useRegex: 0
-      productName: []
-    elements:
-      compoundElements: []
-      axes: []
-      buttons: []
-  fallback_RazerForgeTV:
     matchingCriteria:
       axisCount: 0
       buttonCount: 0

@@ -74,17 +74,11 @@ MonoBehaviour:
     _name: Touchpad Stick
     _elementType: 100
     _compoundElementType: 0
-  compoundElements:
-  - type: 0
-    elementIdentifier: 5
-    componentElementIdentifiers: 0000000001000000
   directInput:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       hatCount: 0
       productName_useRegex: 0
       productName: []
@@ -95,14 +89,11 @@ MonoBehaviour:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   rawInput:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       hatCount: 0
       productName_useRegex: 0
       productName: []
@@ -113,27 +104,21 @@ MonoBehaviour:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   xInput:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       subType: 
     elements:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   osx:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       hatCount: 0
       productName_useRegex: 0
       productName: []
@@ -144,14 +129,11 @@ MonoBehaviour:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   linux:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       hatCount: 0
       manufacturer_useRegex: 0
       productName_useRegex: 0
@@ -164,147 +146,92 @@ MonoBehaviour:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
-  windowsUWP:
-    description: 
+  windows10Universal:
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       hatCount: 0
       manufacturer_useRegex: 0
       productName_useRegex: 0
+      systemName_useRegex: 0
       manufacturer: []
       productName: []
+      systemName: []
       productGUID: []
     elements:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   fallback_Windows:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
-      matchUnityVersion: 0
-      matchUnityVersion_min: 
-      matchUnityVersion_max: 
     elements:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
-  fallback_WindowsUWP:
-    description: 
-    matchingCriteria:
-      axisCount: 0
-      buttonCount: 0
-      disabled: 0
-      tag: 
-      alwaysMatch: 0
-      productName_useRegex: 0
-      productName: []
-      matchUnityVersion: 0
-      matchUnityVersion_min: 
-      matchUnityVersion_max: 
-    elements:
-      compoundElements: []
-      axes: []
-      buttons: []
-    variants: []
   fallback_OSX:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
-      matchUnityVersion: 0
-      matchUnityVersion_min: 
-      matchUnityVersion_max: 
     elements:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   fallback_Linux:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
-      matchUnityVersion: 0
-      matchUnityVersion_min: 
-      matchUnityVersion_max: 
     elements:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   fallback_Linux_PreConfigured:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
-      matchUnityVersion: 0
-      matchUnityVersion_min: 
-      matchUnityVersion_max: 
     elements:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   fallback_Android:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
-      matchUnityVersion: 0
-      matchUnityVersion_min: 
-      matchUnityVersion_max: 
     elements:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   fallback_iOS:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       alwaysMatch: 0
       productName_useRegex: 1
       productName:
       - \[basic,wireless\] joystick [0-9]+ by Remote
-      matchUnityVersion: 0
-      matchUnityVersion_min: 
-      matchUnityVersion_max: 
     elements:
       compoundElements:
       - type: 0
@@ -326,9 +253,7 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
-        axisInfo:
-          _dataFormat: 0
-          _excludeFromPolling: 0
+        doNotApplyRangeCalibration: 1
       - elementIdentifier: 1
         sourceType: 1
         sourceAxis: 2
@@ -344,9 +269,7 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
-        axisInfo:
-          _dataFormat: 0
-          _excludeFromPolling: 0
+        doNotApplyRangeCalibration: 1
       - elementIdentifier: 6
         sourceType: 100
         sourceAxis: 2
@@ -359,17 +282,14 @@ MonoBehaviour:
         - sourceType: 1
           sourceElement: 16
           sourceAxisRange: 0
-          deadzone: 0
           invert: 0
         - sourceType: 1
           sourceElement: 17
           sourceAxisRange: 0
-          deadzone: 0
           invert: 0
         - sourceType: 1
           sourceElement: 18
           sourceAxisRange: 0
-          deadzone: 0
           invert: 1
         invert: 0
         sourceAxisRange: 0
@@ -378,9 +298,7 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
-        axisInfo:
-          _dataFormat: 0
-          _excludeFromPolling: 1
+        doNotApplyRangeCalibration: 0
       - elementIdentifier: 7
         sourceType: 100
         sourceAxis: 2
@@ -393,17 +311,14 @@ MonoBehaviour:
         - sourceType: 1
           sourceElement: 16
           sourceAxisRange: 0
-          deadzone: 0
           invert: 0
         - sourceType: 1
           sourceElement: 17
           sourceAxisRange: 0
-          deadzone: 0
           invert: 0
         - sourceType: 1
           sourceElement: 18
           sourceAxisRange: 0
-          deadzone: 0
           invert: 1
         invert: 1
         sourceAxisRange: 0
@@ -412,9 +327,7 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
-        axisInfo:
-          _dataFormat: 0
-          _excludeFromPolling: 1
+        doNotApplyRangeCalibration: 0
       - elementIdentifier: 8
         sourceType: 1
         sourceAxis: 19
@@ -430,9 +343,7 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
-        axisInfo:
-          _dataFormat: 0
-          _excludeFromPolling: 1
+        doNotApplyRangeCalibration: 1
       - elementIdentifier: 9
         sourceType: 1
         sourceAxis: 20
@@ -448,9 +359,7 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
-        axisInfo:
-          _dataFormat: 0
-          _excludeFromPolling: 1
+        doNotApplyRangeCalibration: 1
       - elementIdentifier: 10
         sourceType: 1
         sourceAxis: 21
@@ -466,9 +375,7 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
-        axisInfo:
-          _dataFormat: 0
-          _excludeFromPolling: 1
+        doNotApplyRangeCalibration: 1
       - elementIdentifier: 11
         sourceType: 1
         sourceAxis: 16
@@ -484,9 +391,7 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
-        axisInfo:
-          _dataFormat: 0
-          _excludeFromPolling: 1
+        doNotApplyRangeCalibration: 1
       - elementIdentifier: 12
         sourceType: 1
         sourceAxis: 17
@@ -502,9 +407,7 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
-        axisInfo:
-          _dataFormat: 0
-          _excludeFromPolling: 1
+        doNotApplyRangeCalibration: 1
       - elementIdentifier: 13
         sourceType: 1
         sourceAxis: 18
@@ -520,9 +423,7 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
-        axisInfo:
-          _dataFormat: 0
-          _excludeFromPolling: 1
+        doNotApplyRangeCalibration: 1
       buttons:
       - elementIdentifier: 2
         sourceType: 0
@@ -587,243 +488,165 @@ MonoBehaviour:
         requiredButtons: 
         ignoreIfButtonsActive: 0
         ignoreIfButtonsActiveButtons: 
-    variants: []
   fallback_Blackberry:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
-      matchUnityVersion: 0
-      matchUnityVersion_min: 
-      matchUnityVersion_max: 
     elements:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   fallback_WindowsPhone8:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
-      matchUnityVersion: 0
-      matchUnityVersion_min: 
-      matchUnityVersion_max: 
     elements:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   fallback_XBox360:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
-      matchUnityVersion: 0
-      matchUnityVersion_min: 
-      matchUnityVersion_max: 
     elements:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   fallback_XBoxOne:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
-      matchUnityVersion: 0
-      matchUnityVersion_min: 
-      matchUnityVersion_max: 
     elements:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   fallback_PS3:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
-      matchUnityVersion: 0
-      matchUnityVersion_min: 
-      matchUnityVersion_max: 
     elements:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   fallback_PS4:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
-      matchUnityVersion: 0
-      matchUnityVersion_min: 
-      matchUnityVersion_max: 
     elements:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   fallback_PSM:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
-      matchUnityVersion: 0
-      matchUnityVersion_min: 
-      matchUnityVersion_max: 
     elements:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   fallback_PSVita:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
-      matchUnityVersion: 0
-      matchUnityVersion_min: 
-      matchUnityVersion_max: 
     elements:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   fallback_Wii:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
-      matchUnityVersion: 0
-      matchUnityVersion_min: 
-      matchUnityVersion_max: 
     elements:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   fallback_WiiU:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
-      matchUnityVersion: 0
-      matchUnityVersion_min: 
-      matchUnityVersion_max: 
     elements:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   fallback_AmazonFireTV:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
-      matchUnityVersion: 0
-      matchUnityVersion_min: 
-      matchUnityVersion_max: 
     elements:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   fallback_RazerForgeTV:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
-      matchUnityVersion: 0
-      matchUnityVersion_min: 
-      matchUnityVersion_max: 
     elements:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   ouya:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       alwaysMatch: 0
     elements:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   xboxOne:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
@@ -831,29 +654,11 @@ MonoBehaviour:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
-  ps4:
-    description: 
-    matchingCriteria:
-      axisCount: 0
-      buttonCount: 0
-      disabled: 0
-      tag: 
-      alwaysMatch: 0
-      productName_useRegex: 0
-      productName: []
-    elements:
-      compoundElements: []
-      axes: []
-      buttons: []
-    variants: []
   internalDriver:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       alwaysMatch: 0
       productName_useRegex: 0
       productName: []
@@ -863,14 +668,11 @@ MonoBehaviour:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   sdl2_Linux:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       hatCount: 0
       manufacturer_useRegex: 0
       productName_useRegex: 0
@@ -883,14 +685,11 @@ MonoBehaviour:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   sdl2_Windows:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       hatCount: 0
       manufacturer_useRegex: 0
       productName_useRegex: 0
@@ -903,14 +702,11 @@ MonoBehaviour:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   sdl2_OSX:
-    description: 
     matchingCriteria:
       axisCount: 0
       buttonCount: 0
       disabled: 0
-      tag: 
       hatCount: 0
       manufacturer_useRegex: 0
       productName_useRegex: 0
@@ -923,5 +719,4 @@ MonoBehaviour:
       compoundElements: []
       axes: []
       buttons: []
-    variants: []
   elementIdentifierIdCounter: 14

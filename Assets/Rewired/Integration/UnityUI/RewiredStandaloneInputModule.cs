@@ -1,15 +1,6 @@
-// Copyright (c) 2016 Augie R. Maddox, Guavaman Enterprises. All rights reserved.
-// Based on Unity StandaloneInputModule.cs, version 5.3
-// https://bitbucket.org/Unity-Technologies/ui/src/b5f9aae6ff7c2c63a521a1cb8b3e3da6939b191b/UnityEngine.UI/EventSystem/InputModules?at=5.3
-
-#pragma warning disable 0219
-#pragma warning disable 0618
-#pragma warning disable 0649
-
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using System.Collections.Generic;
 
 namespace Rewired.Integration.UnityUI {
@@ -18,15 +9,6 @@ namespace Rewired.Integration.UnityUI {
     public class RewiredStandaloneInputModule : PointerInputModule {
         
         #region Rewired Variables and Properties
-
-        private const string DEFAULT_ACTION_MOVE_HORIZONTAL = "UIHorizontal";
-        private const string DEFAULT_ACTION_MOVE_VERTICAL = "UIVertical";
-        private const string DEFAULT_ACTION_SUBMIT = "UISubmit";
-        private const string DEFAULT_ACTION_CANCEL = "UICancel";
-
-        private int[] playerIds;
-        private bool recompiling;
-        private bool isTouchSupported;
 
         /// <summary>
         /// Allow all Rewired game Players to control the UI. This does not include the System Player. If enabled, this setting overrides individual Player Ids set in Rewired Player Ids.
@@ -48,13 +30,6 @@ namespace Rewired.Integration.UnityUI {
         [SerializeField]
         [Tooltip("A list of Player Ids that are allowed to control the UI. If Use All Rewired Game Players = True, this list will be ignored.")]
         private int[] rewiredPlayerIds = new int[1] { 0 };
-        
-        /// <summary>
-        /// Allow only Players with Player.isPlaying = true to control the UI.
-        /// </summary>
-        [SerializeField]
-        [Tooltip("Allow only Players with Player.isPlaying = true to control the UI.")]
-        private bool usePlayingPlayersOnly = false;
 
         /// <summary>
         /// Makes an axis press always move only one UI selection. Enable if you do not want to allow scrolling through UI elements by holding an axis direction.
@@ -62,6 +37,10 @@ namespace Rewired.Integration.UnityUI {
         [SerializeField]
         [Tooltip("Makes an axis press always move only one UI selection. Enable if you do not want to allow scrolling through UI elements by holding an axis direction.")]
         private bool moveOneElementPerAxisPress;
+
+        private int[] playerIds;
+
+        private bool recompiling;
 
         /// <summary>
         /// Allow all Rewired game Players to control the UI. This does not include the System Player. If enabled, this setting overrides individual Player Ids set in Rewired Player Ids.
@@ -97,14 +76,6 @@ namespace Rewired.Integration.UnityUI {
                 SetupRewiredVars();
             }
         }
-        
-        /// <summary>
-        /// Allow only Players with Player.isPlaying = true to control the UI.
-        /// </summary>
-        public bool UsePlayingPlayersOnly {
-            get { return usePlayingPlayersOnly; }
-            set { usePlayingPlayersOnly = value; }
-        }
 
         /// <summary>
         /// Makes an axis press always move only one UI selection. Enable if you do not want to allow scrolling through UI elements by holding an axis direction.
@@ -114,28 +85,6 @@ namespace Rewired.Integration.UnityUI {
             set { moveOneElementPerAxisPress = value; }
         }
 
-        /// <summary>
-        /// Allows the mouse to be used to select elements.
-        /// </summary>
-        public bool allowMouseInput {
-            get { return m_allowMouseInput; }
-            set { m_allowMouseInput = value; }
-        }
-
-        /// <summary>
-        /// Allows the mouse to be used to select elements if the device also supports touch control.
-        /// </summary>
-        public bool allowMouseInputIfTouchSupported {
-            get { return m_allowMouseInputIfTouchSupported; }
-            set { m_allowMouseInputIfTouchSupported = value; }
-        }
-
-        private bool isMouseSupported {
-            get {
-                if(!m_allowMouseInput) return false;
-                return isTouchSupported ? m_allowMouseInputIfTouchSupported : true;
-            }
-        }
 
         #endregion
 
@@ -146,29 +95,31 @@ namespace Rewired.Integration.UnityUI {
         private Vector2 m_LastMousePosition;
         private Vector2 m_MousePosition;
 
+        private bool isTouchSupported;
+
         [SerializeField]
-        private string m_HorizontalAxis = DEFAULT_ACTION_MOVE_HORIZONTAL;
+        private string m_HorizontalAxis = "Horizontal";
 
         /// <summary>
         /// Name of the vertical axis for movement (if axis events are used).
         /// </summary>
         [SerializeField]
         [Tooltip("Name of the vertical axis for movement (if axis events are used).")]
-        private string m_VerticalAxis = DEFAULT_ACTION_MOVE_VERTICAL;
+        private string m_VerticalAxis = "Vertical";
 
         /// <summary>
         /// Name of the action used to submit.
         /// </summary>
         [SerializeField]
         [Tooltip("Name of the action used to submit.")]
-        private string m_SubmitButton = DEFAULT_ACTION_SUBMIT;
+        private string m_SubmitButton = "Submit";
 
         /// <summary>
         /// Name of the action used to cancel.
         /// </summary>
         [SerializeField]
         [Tooltip("Name of the action used to cancel.")]
-        private string m_CancelButton = DEFAULT_ACTION_CANCEL;
+        private string m_CancelButton = "Cancel";
 
         /// <summary>
         /// Number of selection changes allowed per second when a movement button/axis is held in a direction.
@@ -185,6 +136,13 @@ namespace Rewired.Integration.UnityUI {
         private float m_RepeatDelay = 0.0f;
 
         /// <summary>
+        /// Allows the module to control UI input on mobile devices.
+        /// </summary>
+        [SerializeField]
+        [Tooltip("Allows the module to control UI input on mobile devices.")]
+        private bool m_AllowActivationOnMobileDevice;
+
+        /// <summary>
         /// Allows the mouse to be used to select elements.
         /// </summary>
         [SerializeField]
@@ -196,31 +154,14 @@ namespace Rewired.Integration.UnityUI {
         /// </summary>
         [SerializeField]
         [Tooltip("Allows the mouse to be used to select elements if the device also supports touch control.")]
-        private bool m_allowMouseInputIfTouchSupported = true;
-
-        /// <summary>
-        /// Forces the module to always be active.
-        /// </summary>
-        [SerializeField]
-        [FormerlySerializedAs("m_AllowActivationOnMobileDevice")]
-        [Tooltip("Forces the module to always be active.")]
-        private bool m_ForceModuleActive;
+        private bool m_allowMouseInputIfTouchSupported = false;
 
         /// <summary>
         /// Allows the module to control UI input on mobile devices..
         /// </summary>
-        [Obsolete("allowActivationOnMobileDevice has been deprecated. Use forceModuleActive instead")]
         public bool allowActivationOnMobileDevice {
-            get { return m_ForceModuleActive; }
-            set { m_ForceModuleActive = value; }
-        }
-
-        /// <summary>
-        /// Forces the module to always be active.
-        /// </summary>
-        public bool forceModuleActive {
-            get { return m_ForceModuleActive; }
-            set { m_ForceModuleActive = value; }
+            get { return m_AllowActivationOnMobileDevice; }
+            set { m_AllowActivationOnMobileDevice = value; }
         }
 
         // <summary>
@@ -271,6 +212,29 @@ namespace Rewired.Integration.UnityUI {
             set { m_CancelButton = value; }
         }
 
+        /// <summary>
+        /// Allows the mouse to be used to select elements.
+        /// </summary>
+        public bool allowMouseInput {
+            get { return m_allowMouseInput; }
+            set { m_allowMouseInput = value; }
+        }
+
+        /// <summary>
+        /// Allows the mouse to be used to select elements if the device also supports touch control.
+        /// </summary>
+        public bool allowMouseInputIfTouchSupported {
+            get { return m_allowMouseInputIfTouchSupported; }
+            set { m_allowMouseInputIfTouchSupported = value; }
+        }
+
+        private bool isMouseSupported {
+            get {
+                if(!m_allowMouseInput) return false;
+                return isTouchSupported ? m_allowMouseInputIfTouchSupported : true;
+            }
+        }
+
         // Constructor
 
         protected RewiredStandaloneInputModule() { }
@@ -282,15 +246,13 @@ namespace Rewired.Integration.UnityUI {
 
             // Determine if touch is supported
             isTouchSupported = Input.touchSupported;
-
-            // Deactivate the TouchInputModule because it has been deprecated in 5.3. Functionality was moved into here on all versions.
-            TouchInputModule tim = GetComponent<TouchInputModule>();
-            if(tim != null) {
-                tim.enabled = false;
-#if UNITY_EDITOR
-                Debug.LogWarning("The TouchInputModule is no longer used as the functionality has been moved into the RewiredStandaloneInputModule. Please remove the TouchInputModule component.");
+            
+#if UNITY_TVOS
+          // Deactivate the touch input module on TVOS so Siri Remote touchpad doesn't prevent joystick UI control
+          TouchInputModule tim = GetComponent<TouchInputModule>();
+          if(tim == null) tim = FindObjectOfType<TouchInputModule>();
+          if(tim != null) tim.enabled = false;
 #endif
-            }
 
             // Initialize Rewired
             InitializeRewired();
@@ -308,21 +270,25 @@ namespace Rewired.Integration.UnityUI {
         }
 
         public override bool IsModuleSupported() {
-            return true; // there is never any reason this module should not be supported now that TouchInputModule is deprecated, so always return true.
+            // Check for mouse presence instead of whether touch is supported,
+            // as you can connect mouse to a tablet and in that case we'd want
+            // to use StandaloneInputModule for non-touch input events.
+            if(Application.isMobilePlatform) return m_AllowActivationOnMobileDevice || Input.mousePresent;
+            return true;
         }
 
         public override bool ShouldActivateModule() {
-            if(!base.ShouldActivateModule()) return false;
+            if(!base.ShouldActivateModule())
+                return false;
             if(recompiling) return false;
             if(!ReInput.isReady) return false;
 
-            bool shouldActivate = m_ForceModuleActive;
+            bool shouldActivate = false;
 
             // Combine input for all players
             for(int i = 0; i < playerIds.Length; i++) {
                 Rewired.Player player = ReInput.players.GetPlayer(playerIds[i]);
                 if(player == null) continue;
-                if(usePlayingPlayersOnly && !player.isPlaying) continue;
 
                 shouldActivate |= player.GetButtonDown(m_SubmitButton);
                 shouldActivate |= player.GetButtonDown(m_CancelButton);
@@ -335,20 +301,9 @@ namespace Rewired.Integration.UnityUI {
                 }
             }
 
-            // Mouse input
             if(isMouseSupported) {
                 shouldActivate |= (m_MousePosition - m_LastMousePosition).sqrMagnitude > 0.0f;
                 shouldActivate |= ReInput.controllers.Mouse.GetButtonDown(0);
-            }
-
-            // Touch input
-            if(isTouchSupported) {
-                for(int i = 0; i < Input.touchCount; ++i) {
-                    Touch input = Input.GetTouch(i);
-                    shouldActivate |= input.phase == TouchPhase.Began
-                        || input.phase == TouchPhase.Moved
-                        || input.phase == TouchPhase.Stationary;
-                }
             }
             
             return shouldActivate;
@@ -358,9 +313,8 @@ namespace Rewired.Integration.UnityUI {
             base.ActivateModule();
 
             if(isMouseSupported) {
-                Vector2 mousePosition = ReInput.controllers.Mouse.screenPosition;
-                m_MousePosition = mousePosition;
-                m_LastMousePosition = mousePosition;
+                m_MousePosition = Input.mousePosition;
+                m_LastMousePosition = Input.mousePosition;
             }
 
             var toSelect = eventSystem.currentSelectedGameObject;
@@ -388,137 +342,15 @@ namespace Rewired.Integration.UnityUI {
                     SendSubmitEventToSelectedObject();
             }
 
-            // touch needs to take precedence because of the mouse emulation layer
-            if(!ProcessTouchEvents()) {
-                if(isMouseSupported) ProcessMouseEvent();
-            }
-        }
-
-        private bool ProcessTouchEvents() {
-            if(!isTouchSupported) return false;
-
-            for(int i = 0; i < Input.touchCount; ++i) {
-                Touch input = Input.GetTouch(i);
-
-#if UNITY_5_3_OR_NEWER
-                if(input.type == TouchType.Indirect)
-                    continue;
-#endif
-
-                bool released;
-                bool pressed;
-                var pointer = GetTouchPointerEventData(input, out pressed, out released);
-
-                ProcessTouchPress(pointer, pressed, released);
-
-                if(!released) {
-                    ProcessMove(pointer);
-                    ProcessDrag(pointer);
-                } else
-                    RemovePointerData(pointer);
-            }
-            return Input.touchCount > 0;
-        }
-
-        private void ProcessTouchPress(PointerEventData pointerEvent, bool pressed, bool released) {
-            var currentOverGo = pointerEvent.pointerCurrentRaycast.gameObject;
-
-            // PointerDown notification
-            if(pressed) {
-                pointerEvent.eligibleForClick = true;
-                pointerEvent.delta = Vector2.zero;
-                pointerEvent.dragging = false;
-                pointerEvent.useDragThreshold = true;
-                pointerEvent.pressPosition = pointerEvent.position;
-                pointerEvent.pointerPressRaycast = pointerEvent.pointerCurrentRaycast;
-
-                DeselectIfSelectionChanged(currentOverGo, pointerEvent);
-
-                if(pointerEvent.pointerEnter != currentOverGo) {
-                    // send a pointer enter to the touched element if it isn't the one to select...
-                    HandlePointerExitAndEnter(pointerEvent, currentOverGo);
-                    pointerEvent.pointerEnter = currentOverGo;
-                }
-
-                // search for the control that will receive the press
-                // if we can't find a press handler set the press
-                // handler to be what would receive a click.
-                var newPressed = ExecuteEvents.ExecuteHierarchy(currentOverGo, pointerEvent, ExecuteEvents.pointerDownHandler);
-
-                // didnt find a press handler... search for a click handler
-                if(newPressed == null)
-                    newPressed = ExecuteEvents.GetEventHandler<IPointerClickHandler>(currentOverGo);
-
-                // Debug.Log("Pressed: " + newPressed);
-
-                float time = Time.unscaledTime;
-
-                if(newPressed == pointerEvent.lastPress) {
-                    var diffTime = time - pointerEvent.clickTime;
-                    if(diffTime < 0.3f)
-                        ++pointerEvent.clickCount;
-                    else
-                        pointerEvent.clickCount = 1;
-
-                    pointerEvent.clickTime = time;
-                } else {
-                    pointerEvent.clickCount = 1;
-                }
-
-                pointerEvent.pointerPress = newPressed;
-                pointerEvent.rawPointerPress = currentOverGo;
-
-                pointerEvent.clickTime = time;
-
-                // Save the drag handler as well
-                pointerEvent.pointerDrag = ExecuteEvents.GetEventHandler<IDragHandler>(currentOverGo);
-
-                if(pointerEvent.pointerDrag != null)
-                    ExecuteEvents.Execute(pointerEvent.pointerDrag, pointerEvent, ExecuteEvents.initializePotentialDrag);
-            }
-
-            // PointerUp notification
-            if(released) {
-                // Debug.Log("Executing pressup on: " + pointer.pointerPress);
-                ExecuteEvents.Execute(pointerEvent.pointerPress, pointerEvent, ExecuteEvents.pointerUpHandler);
-
-                // Debug.Log("KeyCode: " + pointer.eventData.keyCode);
-
-                // see if we mouse up on the same element that we clicked on...
-                var pointerUpHandler = ExecuteEvents.GetEventHandler<IPointerClickHandler>(currentOverGo);
-
-                // PointerClick and Drop events
-                if(pointerEvent.pointerPress == pointerUpHandler && pointerEvent.eligibleForClick) {
-                    ExecuteEvents.Execute(pointerEvent.pointerPress, pointerEvent, ExecuteEvents.pointerClickHandler);
-                } else if(pointerEvent.pointerDrag != null && pointerEvent.dragging) {
-                    ExecuteEvents.ExecuteHierarchy(currentOverGo, pointerEvent, ExecuteEvents.dropHandler);
-                }
-
-                pointerEvent.eligibleForClick = false;
-                pointerEvent.pointerPress = null;
-                pointerEvent.rawPointerPress = null;
-
-                if(pointerEvent.pointerDrag != null && pointerEvent.dragging)
-                    ExecuteEvents.Execute(pointerEvent.pointerDrag, pointerEvent, ExecuteEvents.endDragHandler);
-
-                pointerEvent.dragging = false;
-                pointerEvent.pointerDrag = null;
-
-                if(pointerEvent.pointerDrag != null)
-                    ExecuteEvents.Execute(pointerEvent.pointerDrag, pointerEvent, ExecuteEvents.endDragHandler);
-
-                pointerEvent.pointerDrag = null;
-
-                // send exit events as we need to simulate this on touch up on touch device
-                ExecuteEvents.ExecuteHierarchy(pointerEvent.pointerEnter, pointerEvent, ExecuteEvents.pointerExitHandler);
-                pointerEvent.pointerEnter = null;
+            if(isMouseSupported) {
+                ProcessMouseEvent();
             }
         }
 
         /// <summary>
         /// Process submit keys.
         /// </summary>
-        protected bool SendSubmitEventToSelectedObject() {
+        private bool SendSubmitEventToSelectedObject() {
             if(eventSystem.currentSelectedGameObject == null)
                 return false;
             if(recompiling) return false;
@@ -527,7 +359,6 @@ namespace Rewired.Integration.UnityUI {
             for(int i = 0; i < playerIds.Length; i++) {
                 Rewired.Player player = ReInput.players.GetPlayer(playerIds[i]);
                 if(player == null) continue;
-                if(usePlayingPlayersOnly && !player.isPlaying) continue;
 
                 if(player.GetButtonDown(m_SubmitButton)) {
                     ExecuteEvents.Execute(eventSystem.currentSelectedGameObject, data, ExecuteEvents.submitHandler);
@@ -553,7 +384,6 @@ namespace Rewired.Integration.UnityUI {
             for(int i = 0; i < playerIds.Length; i++) {
                 Rewired.Player player = ReInput.players.GetPlayer(playerIds[i]);
                 if(player == null) continue;
-                if(usePlayingPlayersOnly && !player.isPlaying) continue;
 
                 if(moveOneElementPerAxisPress) { // axis press moves only to the next UI element with each press
                     float x = 0.0f;
@@ -571,6 +401,7 @@ namespace Rewired.Integration.UnityUI {
                     move.x += player.GetAxisRaw(m_HorizontalAxis);
                     move.y += player.GetAxisRaw(m_VerticalAxis);
                 }
+                
                 
                 horizButton |= player.GetButtonDown(m_HorizontalAxis) || player.GetNegativeButtonDown(m_HorizontalAxis);
                 vertButton |= player.GetButtonDown(m_VerticalAxis) || player.GetNegativeButtonDown(m_VerticalAxis);
@@ -594,7 +425,7 @@ namespace Rewired.Integration.UnityUI {
         /// <summary>
         /// Process keyboard events.
         /// </summary>
-        protected bool SendMoveEventToSelectedObject() {
+        private bool SendMoveEventToSelectedObject() {
             if(recompiling) return false; // never allow movement while recompiling
 
             float time = Time.unscaledTime; // get the current time
@@ -656,7 +487,6 @@ namespace Rewired.Integration.UnityUI {
             for(int i = 0; i < playerIds.Length; i++) {
                 Rewired.Player player = ReInput.players.GetPlayer(playerIds[i]);
                 if(player == null) continue;
-                if(usePlayingPlayersOnly && !player.isPlaying) continue;
 
                 allow |= player.GetButtonDown(m_HorizontalAxis) || player.GetNegativeButtonDown(m_HorizontalAxis);
                 allow |= player.GetButtonDown(m_VerticalAxis) || player.GetNegativeButtonDown(m_VerticalAxis);
@@ -665,22 +495,25 @@ namespace Rewired.Integration.UnityUI {
             return allow;
         }
 
-        protected void ProcessMouseEvent() {
-            ProcessMouseEvent(0);
-        }
-
         /// <summary>
         /// Process all mouse events.
         /// </summary>
-        protected void ProcessMouseEvent(int id) {
+        private void ProcessMouseEvent() {
 
             // Breaking change to UnityEngine.EventSystems.PointerInputModule.GetMousePointerEventData() in Unity 5.1.2p1. This code cannot compile in these patch releases because no defines exist for patch releases
 #if !UNITY_5 || (UNITY_5 && (UNITY_5_0 || UNITY_5_1_0 || UNITY_5_1_1 || UNITY_5_1_2))
             var mouseData = GetMousePointerEventData();
 #else
-            var mouseData = GetMousePointerEventData(id);
+            var mouseData = GetMousePointerEventData(kMouseLeftId);
 #endif
+
+            var pressed = mouseData.AnyPressesThisFrame();
+            var released = mouseData.AnyReleasesThisFrame();
+
             var leftButtonData = mouseData.GetButtonState(PointerEventData.InputButton.Left).eventData;
+
+            if(!UseMouse(pressed, released, leftButtonData.buttonData))
+                return;
 
             // Process the first mouse button fully
             ProcessMousePress(leftButtonData);
@@ -699,7 +532,14 @@ namespace Rewired.Integration.UnityUI {
             }
         }
 
-        protected bool SendUpdateEventToSelectedObject() {
+        private static bool UseMouse(bool pressed, bool released, PointerEventData pointerData) {
+            if(pressed || released || pointerData.IsPointerMoving() || pointerData.IsScrolling())
+                return true;
+
+            return false;
+        }
+
+        private bool SendUpdateEventToSelectedObject() {
             if(eventSystem.currentSelectedGameObject == null)
                 return false;
 
@@ -711,7 +551,7 @@ namespace Rewired.Integration.UnityUI {
         /// <summary>
         /// Process the current mouse press.
         /// </summary>
-        protected void ProcessMousePress(MouseButtonEventData data) {
+        private void ProcessMousePress(MouseButtonEventData data) {
             var pointerEvent = data.buttonData;
             var currentOverGo = pointerEvent.pointerCurrentRaycast.gameObject;
 
@@ -776,7 +616,7 @@ namespace Rewired.Integration.UnityUI {
                 // PointerClick and Drop events
                 if(pointerEvent.pointerPress == pointerUpHandler && pointerEvent.eligibleForClick) {
                     ExecuteEvents.Execute(pointerEvent.pointerPress, pointerEvent, ExecuteEvents.pointerClickHandler);
-                } else if(pointerEvent.pointerDrag != null && pointerEvent.dragging) {
+                } else if(pointerEvent.pointerDrag != null) {
                     ExecuteEvents.ExecuteHierarchy(currentOverGo, pointerEvent, ExecuteEvents.dropHandler);
                 }
 
